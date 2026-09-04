@@ -123,3 +123,24 @@ a {
     padding-inline: 1.25rem;
   }
 }
+
+.admin-error-boundary {
+  min-block-size: 100vh;
+  display: grid;
+  place-items: center;
+  padding-inline: 1.5rem;
+  padding-block: 2rem;
+}
+
+.admin-error-boundary__panel {
+  inline-size: min(100%, 40rem);
+  text-align: start;
+}
+
+.admin-error-boundary__panel button {
+  margin-block-start: 1rem;
+  padding-inline: 1rem;
+  padding-block: 0.65rem;
+  font: inherit;
+  cursor: pointer;
+}
