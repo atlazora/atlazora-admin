@@ -8,7 +8,7 @@
     "Segoe UI",
     sans-serif;
   color: #111827;
-  background: #f9fafb;
+  background: #f3f4f6;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
 }
@@ -23,8 +23,93 @@ body {
   min-height: 100vh;
 }
 
-main {
+a {
+  color: inherit;
+}
+
+.admin-shell {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: minmax(14rem, 18rem) minmax(0, 1fr);
+}
+
+.admin-sidebar {
+  padding: 1.5rem;
+  background: #111827;
+  color: #f9fafb;
+}
+
+.admin-brand {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.admin-brand__product {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.admin-brand__surface {
+  font-size: 0.875rem;
+  color: #d1d5db;
+}
+
+.admin-navigation {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.admin-navigation__link {
+  display: block;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  text-decoration: none;
+}
+
+.admin-navigation__link:hover,
+.admin-navigation__link:focus-visible {
+  background: #374151;
+}
+
+.admin-main {
+  min-width: 0;
+  padding: 2rem;
+}
+
+.admin-view {
   max-width: 72rem;
   margin: 0 auto;
-  padding: 2rem;
+}
+
+.admin-eyebrow {
+  margin-bottom: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.admin-view h1 {
+  margin-top: 0;
+}
+
+@media (max-width: 48rem) {
+  .admin-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-sidebar {
+    padding: 1rem;
+  }
+
+  .admin-brand {
+    margin-bottom: 1rem;
+  }
+
+  .admin-main {
+    padding: 1.25rem;
+  }
 }
