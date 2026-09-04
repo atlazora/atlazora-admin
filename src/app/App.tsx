@@ -1,15 +1,20 @@
 import { AdminShell } from "../components/AdminShell";
+import { catalog, type Locale } from "../i18n/catalog";
+import { DEFAULT_LOCALE } from "../i18n/locale";
 
-export function App() {
+interface AppProps {
+  locale?: Locale;
+}
+
+export function App({ locale = DEFAULT_LOCALE }: AppProps) {
+  const copy = catalog[locale];
+
   return (
-    <AdminShell>
+    <AdminShell locale={locale}>
       <section className="admin-view" aria-labelledby="overview-title">
-        <p className="admin-eyebrow">Operations workspace</p>
-        <h1 id="overview-title">Overview</h1>
-        <p>
-          Atlazora Admin provides the presentation foundation for authenticated
-          operational workflows.
-        </p>
+        <p className="admin-eyebrow">{copy.overview.eyebrow}</p>
+        <h1 id="overview-title">{copy.overview.title}</h1>
+        <p>{copy.overview.description}</p>
       </section>
     </AdminShell>
   );

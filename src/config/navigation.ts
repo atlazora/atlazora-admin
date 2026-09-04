@@ -1,12 +1,18 @@
+import { catalog, type Locale } from "../i18n/catalog";
+import { DEFAULT_LOCALE } from "../i18n/locale";
 import type { NavigationItem } from "../types/navigation";
 
-export const adminNavigation: readonly NavigationItem[] = [
-  {
-    id: "overview",
-    label: "Overview",
-    href: "/",
-  },
-];
+export function getAdminNavigation(locale: Locale): readonly NavigationItem[] {
+  return [
+    {
+      id: "overview",
+      label: catalog[locale].navigation.overview,
+      href: "/",
+    },
+  ];
+}
+
+export const adminNavigation = getAdminNavigation(DEFAULT_LOCALE);
 
 export function filterNavigationByCapabilities(
   items: readonly NavigationItem[],

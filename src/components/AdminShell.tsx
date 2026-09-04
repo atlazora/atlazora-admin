@@ -1,36 +1,47 @@
-import type { ReactNode } from "react";
+import { useEffect, type ReactNode } from "react";
 
 import {
-  adminNavigation,
   filterNavigationByCapabilities,
+  getAdminNavigation,
 } from "../config/navigation";
+import { catalog, type Locale } from "../i18n/catalog";
+import { applyDocumentLocale, DEFAULT_LOCALE } from "../i18n/locale";
 import type { Capability, NavigationItem } from "../types/navigation";
 
 interface AdminShellProps {
   children: ReactNode;
   capabilities?: ReadonlySet<Capability>;
   navigationItems?: readonly NavigationItem[];
+  locale?: Locale;
 }
 
 export function AdminShell({
   children,
   capabilities = new Set<Capability>(),
-  navigationItems = adminNavigation,
+  navigationItems,
+  locale = DEFAULT_LOCALE,
 }: AdminShellProps) {
+  const copy = catalog[locale];
+  const resolvedNavigationItems = navigationItems ?? getAdminNavigation(locale);
+
   const visibleNavigation = filterNavigationByCapabilities(
-    navigationItems,
+    resolvedNavigationItems,
     capabilities,
   );
+
+  useEffect(() => {
+    applyDocumentLocale(locale);
+  }, [locale]);
 
   return (
     <div className="admin-shell">
       <aside className="admin-sidebar">
         <div className="admin-brand">
           <span className="admin-brand__product">Atlazora</span>
-          <span className="admin-brand__surface">Admin</span>
+          <span className="admin-brand__surface">{copy.brand.admin}</span>
         </div>
 
-        <nav aria-label="Primary navigation">
+        <nav aria-label={copy.navigation.primaryLabel}>
           <ul className="admin-navigation">
             {visibleNavigation.map((item) => (
               <li key={item.id}>
